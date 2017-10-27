@@ -15,7 +15,7 @@ Functions contain additional functionality controlled by parameter *compile_flag
 - Octave (to run get_EC_Wx_octave) or Matlab (to run get_EC_Wx) 
 - the other functions included in the top-level folder (csvwrite_with_headers.m and readtext.m)
 
-#To run in Octave:
+# To run in Octave:
 - Download the EC_Wx repository; unzip in a working directory (it should unzip as a folder named 'EC_Wx_tools-master')
 - Open up Octave 
 - in the command window, change to the EC_Wx_tools-master directory 
