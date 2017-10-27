@@ -27,7 +27,7 @@ for i = 1:1:size(station_ids,1) % Cycle through sites
             filename = [save_dir num2str(station_ids(i,1)) '-' num2str(year) '-' num2str(month) '-daily.csv'];
           case 1
             filename = [save_dir 'tmp.csv'];
-          end
+        end
             
             [F, SUCCESS, MESSAGE] = urlwrite(url_base, filename,'get',{'format','csv','stationID',num2str(station_ids(i,1)),'Year',num2str(year),'Month',num2str(month),'Day','14','timeframe',num2str(timeframe),'submit','Download+Data'});
         
