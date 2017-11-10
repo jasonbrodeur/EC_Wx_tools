@@ -15,7 +15,7 @@ These scripts automate URL-based retrieval of daily historical Environment Canad
 
 The time increment of the data (i.e. hourly or daily) is controlled by the value of the variable *timeframe*
 - if timeframe == 1, script collects hourly data;
-- if timeframe == 1, script collects daily data;
+- if timeframe == 2, script collects daily data;
 
 The nature of the output is controlled by the value of the variable *compile_flag*
 - if compile_flag == 0, script will download separate (monthly) files to disk; 
