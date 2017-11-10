@@ -1,0 +1,55 @@
+Lisezmoi.txt
+
+Procédure de téléchargement automatiquement de données en vrac depuis le site Web Climat à l’aide de l’URL
+(http://climat.meteo.gc.ca/) 
+Version : 05-10-2016
+
+----------------------------------------
+ENVIRONNEMENT ET CHANGEMENTS CLIMATIQUES CANADA
+
+
+Pour consulter ce fichier en ligne, visitez :
+ftp://client_climate@ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/ 
+Dossier : Get_More_Data_Plus_de_donnees > Lisezmoi.txt
+
+Directives pour télécharger toutes les données météorologiques d’une station à partir du site Web Climat d’Environnement et changements climatiques Canada : 
+
+Liste des stations climatologiques mise à jour quotidiennement dans les Archives nationales, y compris l’indicatif climatologique, l’indicatif de station, l’indicatif de l’OMM, l’indicatif de de TC et les coordonnées, se trouvant dans le dossier suivant : 
+Get_More_Data_Plus_de_donnees > Répertoire des stations FR.csv
+
+Utilisez l’utilitaire suivant pour télécharger les données : 
+• wget (systèmes d’exploitation GNU / Linux)
+• Cygwin (systèmes d’exploitation Windows) https://www.cygwin.com
+• Homebrew (OS X - Apple) http://brew.sh/
+
+Exemple de téléchargement de toutes les données horaires disponibles pour Yellowknife A, entre 1998 et 2008, en format .csv.
+
+
+Ligne de commande: 
+
+for annee in `seq 1998 2008`;do for mois in `seq 1 12`;do wget --content-disposition "http://climat.meteo.gc.ca/climate_data/bulk_data_f.html?format=csv&stationID=1706&Year=${annee}&Month=${mois}&Day=14&timeframe=1&submit=++T%C3%A9l%C3%A9charger+%0D%0Ades+donn%C3%A9es" ;done;done
+
+
+OÙ: 
+• annee = changement de valeur dans la ligne de commande (`seq 1998 2008)
+• mois = changement de valeur dans la ligne de commande (`seq 1 12)
+• format = [csv|xml]: format de sortie
+• timeframe = 1: pour les données horaires 
+• timeframe = 2 : pour les données quotidiennes 
+• timeframe = 3 pour les données mensuelles 
+• Day : la valeur de la variable « jour » n’est pas utilisée et peut être une valeur arbitraire 
+• Pour une autre station, modifiez la valeur de la variable stationID
+• Pour les données en format XML, changez la valeur de la variable « format » pour XML dans l’URL. 
+
+Pour de l’information en français, remplacez Download+Data par ++T%C3%A9l%C3%A9charger+%0D%0Ades+donn%C3%A9es; remplacez aussi _e par _f dans l’URL.
+
+
+Pour toute question ou toute préoccupation, communiquez avec le bureau de Services climatiques nationaux au : 
+ec.services.climatiques-climate.services.ec@canada.ca  
+
+
+
+
+
+
+
