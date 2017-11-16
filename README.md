@@ -24,7 +24,7 @@ The nature of the output is controlled by the value of the variable *compile_fla
 As of 10-Nov, 2017 update, all numeric variables included in the original files are now found in the compiled file.
 
 ## Configuring and running in Octave:
-- Download the EC_Wx repository; unzip in a working directory (it should unzip as a folder named 'EC_Wx_tools-master')
+- Download the [EC_Wx repository](https://github.com/jasonbrodeur/EC_Wx_tools/archive/master.zip); unzip in a working directory (it should unzip as a folder named 'EC_Wx_tools-master')
 - Open up Octave 
 - in the command window, change to the EC_Wx_tools-master directory 
 ---- e.g. cd('D:\Mystuff\EC_Wx_tools-master') (Replace D:\Mystuff with your actual directory
