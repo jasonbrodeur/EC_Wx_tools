@@ -3,6 +3,22 @@
 % and here: ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Readme.txt
 % Station inventory (to Identify Station ID numbers): ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Station%20Inventory%20EN.csv
 % For example, a url that will work (for testing purposes) is: 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=1705&Year=2010&Month=1&Day=14&timeframe=2&submit= Download+Data'
+%
+% Created by JJB, November, 2017
+% Tested and verified using Octave 4.0.0 on Windows 10 and Ubuntu 16.04 LTS
+% 
+% ## Configuring and running in Octave (for full instrucitons: https://github.com/jasonbrodeur/EC_Wx_tools):
+%- in the command window, change to the EC_Wx_tools-master directory 
+%---- e.g. cd('D:\Mystuff\EC_Wx_tools-master') (Replace D:\Mystuff with your actual directory
+%- Open the get_EC_Wx_octave.m function in the Octave editor
+%- modify the value of save_dir to match your working directory
+%---- e.g. in the example provided above, you would change it to 'D:\Mystuff\EC_Wx_tools-master\Data\' (note that the trailing slash is important and necessary)
+%- edit the values for start_year and end_year to match your requirements 
+%- edit the list provided in station_ids, to match the IDs of the stations you want to download from ([here is a link](ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Station%20Inventory%20EN.csv) to the Station directory). Use values found in the "Station ID" field.
+%---- be sure that each id number is separated by a semicolon (this will make an nx1 column vector)
+%- If you want to compile the data into a single (long) csv for all years at a given site, keep compile_flag=1; If you want to download individual monthly files, change its value to 0; 
+%- Once you've done this, you should be able to click 'Run'. It should then work its way through the sites, downloading monthly files to a file called 'tmp.csv', reopening that file and appending it to the master list, which will be saved at the end. 
+
 url_base = 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html'; % Don't change
 
 %% Editable parameters
@@ -11,7 +27,7 @@ if isdir(save_dir)==0
     mkdir(save_dir);
 end
 
-timeframe = 2; % 1 = hourly; 2 = daily; 3 = monthly
+timeframe = 1; % 1 = hourly; 2 = daily; 3 = monthly
 station_ids = [27600; 31688]; % The station ID numbers
 start_year = 2016;
 end_year = 2017;
