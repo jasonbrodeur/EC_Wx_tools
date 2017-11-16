@@ -33,6 +33,13 @@ start_year = 2016;
 end_year = 2017;
 compile_flag = 1; % If set to 0, script will download separate files to disk; If set to 1, will compile data for all years for a single station.
 
+%%% Try to automatically cd into the proper directory (assuming the
+%%% original structure is being used.
+try
+   cd(save_dir);
+   cd('..');
+catch
+end
 %% Prepare output headers for hourly and daily datasets. Only output
 % numeric fields (i.e. flags are not outputted).
 switch timeframe
