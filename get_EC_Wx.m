@@ -9,8 +9,8 @@ if isdir(save_dir)==0
 end
 
 timeframe = 2; % 1 = hourly; 2 = daily; [3 = monthly (not currently programmed)]
-station_ids = [27600; 31688]; % The station ID numbers
-start_year = 2016;
+station_ids = [5097; 2205]; % The station ID numbers: 5097 = Pearson Airpt; 2205 = Calgary int'l Airpt
+start_year = 1980;
 end_year = 2017;
 compile_flag = 1; % If set to 0, script will download separate files to disk; If set to 1, will compile data for all years for a single station.
 

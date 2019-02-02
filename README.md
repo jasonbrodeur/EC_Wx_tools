@@ -33,15 +33,15 @@ As of 10-Nov, 2017 update, all numeric variables included in the original files 
 - modify the value of save_dir to match your working directory
 ---- e.g. in the example provided above, you would change it to 'D:\Mystuff\EC_Wx_tools-master\Data\' (note that the trailing slash is important and necessary)
 - edit the values for start_year and end_year to match your requirements 
-- edit the list provided in station_ids, to match the IDs of the stations you want to download from - [here is a link](ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Station%20Inventory%20EN.csv) to the Station directory. Use values found in the "Station ID" field.
+- edit the list provided in station_ids, to match the IDs of the stations you want to download from - [here is a link](https://github.com/jasonbrodeur/EC_Wx_tools/tree/master/EC%20Documentation) to the Station directory. Use values found in the "Station ID" field.
 ---- be sure that each id number is separated by a semicolon (this will make an nx1 column vector)
 - If you want to compile the data into a single (long) csv for all years at a given site, keep compile_flag=1; If you want to download individual monthly files, change its value to 0; 
 - Once you've done this, you should be able to click 'Run'. It should then work its way through the sites, downloading monthly files to a file called 'tmp.csv', reopening that file and appending it to the master list, which will be saved at the end. 
 
 
 # More information on extracting historical environment canada climate and weather
-Updated documentation from EC can be found in [this ftp directory](ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/) on the EC server. A copy of each of these materials (as of 10-Nov,2017) is also available in the /EC Documentation/ directory.
-- The readme.txt (ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Readme.txt) provides a short reference for accessing this data via URLs
-- The station inventory may be found at ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Station%20Inventory%20EN.csv
-- More detailed instructions on constructing the URL string are found [here](ftp://client_climate@ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Suggestions_on_installing_Cygwin_and_running_the_command_line_to_download_data.docx). 
+Updated documentation from EC can be found in [this ftp directory](ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/) on the EC server. A copy of each of these materials (as of 10-Nov,2017) is also available in the [EC Documentation](https://github.com/jasonbrodeur/EC_Wx_tools/tree/master/EC%20Documentation) directory.
+- The readme.txt provides a short reference for accessing this data via URLs
+- The station inventory (Station Inventory EN.csv) may be foundin the [EC Documentation](https://github.com/jasonbrodeur/EC_Wx_tools/tree/master/EC%20Documentation) directory
+- More detailed instructions on constructing the URL string are found [here](https://github.com/jasonbrodeur/EC_Wx_tools/tree/master/EC%20Documentation). 
 **Note that this document suggests a wget-based approach, which includes installing cygwin. This is NOT required if you use the scripts and functions included in this repository.**
