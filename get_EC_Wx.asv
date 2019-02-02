@@ -3,15 +3,25 @@
 % For example, a url that will work (for testing purposes) is: 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=1705&Year=2010&Month=1&Day=14&timeframe=2&submit= Download+Data'
 url_base = 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv'; % Don't change
 %% Editable parameters
-save_dir = 'D:\Local\EC_Wx\Data\'; % Location to save data files.
+% save_dir = 'D:\Local\EC_Wx\Data\'; % Location to save data files. Modify as required for local system
+save_dir = pwd; % Location to save data files. Modify as required for local system (currently set to current directory)
+
+if 
 if isdir(save_dir)==0
     mkdir(save_dir);
 end
 
+%%% Notable City codes: 
+% Winnipeg Intl airport (1938 to 2013): 3698
+% Calgary Intl airport (1953 to 2012): 2205
+% Toronto (Pearson) Intl airport (1937 to 2013):5097
+% St. John's NL Airport (1942 to 2012): 6720
+% Vancouver Intl Airport (1937 to 2013): 889
+
 timeframe = 2; % 1 = hourly; 2 = daily; [3 = monthly (not currently programmed)]
-station_ids = [5097; 2205]; % 5097 = The station ID numbers
-start_year = 2016;
-end_year = 2017;
+station_ids = [889; 2205; 3698; 5097; 6720]; % ID numbers of stations to be downloaded
+start_year = 1950;
+end_year = 2010;
 compile_flag = 1; % If set to 0, script will download separate files to disk; If set to 1, will compile data for all years for a single station.
 
 %%% Try to automatically cd into the proper directory (assuming the
