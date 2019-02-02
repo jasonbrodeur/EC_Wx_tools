@@ -33,7 +33,7 @@ As of 10-Nov, 2017 update, all numeric variables included in the original files 
 - modify the value of save_dir to match your working directory
 ---- e.g. in the example provided above, you would change it to 'D:\Mystuff\EC_Wx_tools-master\Data\' (note that the trailing slash is important and necessary)
 - edit the values for start_year and end_year to match your requirements 
-- edit the list provided in station_ids, to match the IDs of the stations you want to download from ([here is a link](ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Station%20Inventory%20EN.csv) to the Station directory). Use values found in the "Station ID" field.
+- edit the list provided in station_ids, to match the IDs of the stations you want to download from - [here is a link](ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Station%20Inventory%20EN.csv) to the Station directory. Use values found in the "Station ID" field.
 ---- be sure that each id number is separated by a semicolon (this will make an nx1 column vector)
 - If you want to compile the data into a single (long) csv for all years at a given site, keep compile_flag=1; If you want to download individual monthly files, change its value to 0; 
 - Once you've done this, you should be able to click 'Run'. It should then work its way through the sites, downloading monthly files to a file called 'tmp.csv', reopening that file and appending it to the master list, which will be saved at the end. 
