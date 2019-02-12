@@ -1,65 +1,35 @@
-function [] = get_EC_Wx(save_dir, timeframe, station_ids, start_year, end_year, compile_flag)
-% This function allows a user to batch download historical weather data
-% from Environment Canada for any number of stations. Hourly or monthly 
-% data may be downloaded in separate monthly files, or as an 
-% all-years-compiled file for a give station and years listed.
-% See https://github.com/jasonbrodeur/EC_Wx_tools for more information
-%
-% usage: [] = get_EC_Wx(save_dir, timeframe, station_ids, start_year, end_year, compile_flag)
-% 
-% INPUTS: 
-%%% save_dir 
-% The target directory for downloads. By default (i.e. if save_dir = ''),
-% it will save to the current working directory.
-%
-%%% timeframe
-% Specified what time interval of data you want to download:
-% 1 = hourly; 2 = daily; [3 = monthly (not currently programmed)]
-%
-%%% station_ids
-% A list of numeric codes for all stations from which data should be downloaded
-% example: station_ids = [889; 2205; 3698; 5097; 6720; 5415];
-% Consult one of the following resources to find station codes: 
-% - https://github.com/jasonbrodeur/EC_Wx_tools/tree/master/EC%20Documentation
-% - ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/ 
-% Notable Station codes: 
+% Using instructions found here: ftp://client_climate@ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Suggestions_on_installing_Cygwin_and_running_the_command_line_to_download_data.docx
+% and here: ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/
+% For example, a url that will work (for testing purposes) is: 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=1705&Year=2010&Month=1&Day=14&timeframe=2&submit= Download+Data'
+url_base = 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv'; % Don't change
+%% Editable parameters
+% save_dir = 'D:\Local\EC_Wx\Data\'; % Location to save data files. Modify as required for local system
+save_dir = pwd; % Location to save data files. Modify as required for local system (currently set to current directory)
+
+%Add trailing slash if it doesn't exist.
+if strcmp(save_dir(end),'/')~=1 || strcmp(save_dir(end),'\')~=1
+save_dir = [save_dir '/']; %Add slash to the end.
+end
+
+if isdir(save_dir)==0
+    mkdir(save_dir);
+end
+
+%%% Notable Station codes: 
 % Winnipeg Intl airport (1938 to 2013): 3698
 % Calgary Intl airport (1953 to 2012): 2205
 % Toronto (Pearson) Intl airport (1937 to 2013):5097
 % St. John's NL Airport (1942 to 2012): 6720
 % Vancouver Intl Airport (1937 to 2013): 889
-% Montreal (Pierre Elliot Trudeau) Airport (1941 to 2017): 5415
-%
-%%% start_year, end_year
-% The first and last years of data to be downloaded
-%
-%%% compile_flag (optional, default = 1)
-% If set to 0, script will download separate files to disk; If set to 1, will compile data for all years for a single station.
+% Montreal (Pierre Elliot Trudeau) Airport: 5415
 
-%% Set parameters
-% Using instructions found here: ftp://client_climate@ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Suggestions_on_installing_Cygwin_and_running_the_command_line_to_download_data.docx
-% and here: ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/
-% For example, a url that will work (for testing purposes) is: 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=1705&Year=2010&Month=1&Day=14&timeframe=2&submit= Download+Data'
-url_base = 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv'; % Don't change
+timeframe = 2; % 1 = hourly; 2 = daily; [3 = monthly (not currently programmed)]
+% station_ids = [889; 2205; 3698; 5097; 6720; 5415]; % ID numbers of stations to be downloaded
+station_ids = [5097; 6720]; % ID numbers of stations to be downloaded
 
-% Set compile_flag = 1 as default if only 5 input arguments given.
-if nargin == 6
-    compile_flag = 1; 
-disp('compile_flag not set. Setting it to default value of 1.');
-end
-
-% Set save_dir as current directory if it is left empty.
-if isempty(save_dir)==1
-    save_dir = pwd; % Location to save data files. Modify as required for local system (currently set to current directory)
-end
-% Add trailing slash if it doesn't exist.
-if strcmp(save_dir(end),'/')~=1 || strcmp(save_dir(end),'\')~=1
-save_dir = [save_dir '/']; %Add slash to the end.
-end
-% If the specified directory doesn't exist, make it.
-if isdir(save_dir)==0
-    mkdir(save_dir);
-end
+start_year = 1950;
+end_year = 2010;
+compile_flag = 1; % If set to 0, script will download separate files to disk; If set to 1, will compile data for all years for a single station.
 
 %%% Try to automatically cd into the proper directory (assuming the
 %%% original structure is being used.

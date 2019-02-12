@@ -42,21 +42,20 @@ function [] = get_EC_Wx(save_dir, timeframe, station_ids, start_year, end_year, 
 % For example, a url that will work (for testing purposes) is: 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=1705&Year=2010&Month=1&Day=14&timeframe=2&submit= Download+Data'
 url_base = 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv'; % Don't change
 
-% Set compile_flag = 1 as default if only 5 input arguments given.
+% Set compile_flag = 1 as default if only 5 inputs give
 if nargin == 6
     compile_flag = 1; 
 disp('compile_flag not set. Setting it to default value of 1.');
 end
 
-% Set save_dir as current directory if it is left empty.
 if isempty(save_dir)==1
     save_dir = pwd; % Location to save data files. Modify as required for local system (currently set to current directory)
 end
-% Add trailing slash if it doesn't exist.
+%Add trailing slash if it doesn't exist.
 if strcmp(save_dir(end),'/')~=1 || strcmp(save_dir(end),'\')~=1
 save_dir = [save_dir '/']; %Add slash to the end.
 end
-% If the specified directory doesn't exist, make it.
+
 if isdir(save_dir)==0
     mkdir(save_dir);
 end

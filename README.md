@@ -1,9 +1,13 @@
 # EC_Wx_tools
 Matlab/Octave tools to facilitate batch downloading of historical station data from Environment Canada
 
-## Main scripts:
+## Functions: 
 - get_EC_Wx.m - Downloads hourly or daily data as monthly (or all-years-compiled) files for all station IDs and years listed (Matlab version)
+
+## Main scripts:
+- get_EC_Wx-script.m - Downloads hourly or daily data as monthly (or all-years-compiled) files for all station IDs and years listed (Matlab version)
 - get_EC_Wx_octave.m - Octave-friendly version of get_EC_Wx.m
+- run_get_EC_Wx.m - A run script for the get_EC_Wx function. Contains an example that will download data from a number of stations.
 
 ## Requirements
 - Octave (to run get_EC_Wx_octave) or Matlab (to run get_EC_Wx) 
@@ -13,14 +17,38 @@ Matlab/Octave tools to facilitate batch downloading of historical station data f
 
 These scripts automate URL-based retrieval of daily historical Environment Canada station data, by iterating over a list of stations (identified by station ID numbers in the *station_ids* variable of the script), and years (set through *start_year* and *end_year* variables). The output is either a collection of separate files (annual csv files for daily data; monthly csv files for hourly data), or a single all-years file. 
 
-The time increment of the data (i.e. hourly or daily) is controlled by the value of the variable *timeframe*
-- if timeframe == 1, script collects hourly data;
-- if timeframe == 2, script collects daily data;
+## Modifiable Parameters / Inputs 
 
-The nature of the output is controlled by the value of the variable *compile_flag*
-- if compile_flag == 0, script will download separate (monthly) files to disk; 
-- If compile_flag == 1, script will compile data for all years and a single station, and save as one large csv file of selected columns.
+### save_dir 
+The target directory for downloads. By default (i.e. if save_dir = ''), it will save to the current working directory.
 
+### timeframe
+Specified what time interval of data you want to download:
+- if timeframe == 1, downloads hourly data;
+- if timeframe == 2, downloads daily data;
+- if timeframe == 3, downloads monthly data; (Not currently programmed)
+
+### station_ids
+A list of numeric codes for all stations from which data should be downloaded
+example: station_ids = [889; 2205; 3698; 5097; 6720; 5415];
+Consult one of the following resources to find station codes: 
+- https://github.com/jasonbrodeur/EC_Wx_tools/tree/master/EC20Documentation
+- ftp://ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/ 
+
+Notable Station codes: 
+- Winnipeg Intl airport (1938 to 2013): 3698
+- Calgary Intl airport (1953 to 2012): 2205
+- Toronto (Pearson) Intl airport (1937 to 2013):5097
+- St. John's NL Airport (1942 to 2012): 6720
+- Vancouver Intl Airport (1937 to 2013): 889
+- Montreal (Pierre Elliot Trudeau) Airport (1941 to 2017): 5415
+
+### start_year, end_year
+The first and last years of data to be downloaded
+
+### compile_flag (optional, default = 1)
+- if compile_flag == 0, function/script will download separate (monthly) files to disk; 
+- If compile_flag == 1, function/script will compile data for all years and a single station, and save as one large csv file of selected columns.
 As of 10-Nov, 2017 update, all numeric variables included in the original files are now found in the compiled file.
 
 ## Configuring and running in Octave:
