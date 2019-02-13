@@ -2,7 +2,12 @@
 % Sample run script for get_EC_Wx function. 
 % Created by JJB.
 
-save_dir = 'D:\Local\EC_Wx\Data\';
+% Step 1: change the current directory to the location of your unzipped
+% Ec_Wx folder
+cd('C:\Users\brodeujj\Downloads\Ec_Wx');
+% cd('D:\Local\EC_Wx\Data\'); % used by Jay on his work PC
+
+save_dir = [pwd '\Data\']; % Set to the data directory
 timeframe = 2; % 1 = hourly; 2 = daily; [3 = monthly (not currently programmed)]
 start_year = 1950;
 end_year = 2010;

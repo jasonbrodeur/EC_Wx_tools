@@ -43,7 +43,7 @@ function [] = get_EC_Wx(save_dir, timeframe, station_ids, start_year, end_year, 
 url_base = 'http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv'; % Don't change
 
 % Set compile_flag = 1 as default if only 5 input arguments given.
-if nargin == 6
+if nargin == 5
     compile_flag = 1; 
 disp('compile_flag not set. Setting it to default value of 1.');
 end
